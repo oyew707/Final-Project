@@ -1,5 +1,5 @@
 ---
-title:  'CP476 Project: Your Project Title<br>(project proposal template)'
+title:  'CP476 Project: Tic Tac Toe<br>(project proposal template)'
 author: Cole Hanniwell, Einstein Oyewole, Nick Dyer
 date: 2021-03-22
 ---
@@ -19,9 +19,23 @@ Briefly describe the major computing problem need to solve in your project.
 
 ## System Design
 
+Design tic tac to
+- Python to make the computer player (Easy:greedy Medium:greedy(or minimax) Hard: minimax)
+- Two People on the same site (two player mode)
+- UI
+- Chat for players
+
 1. System design of your solutions as a multi-tier Internet/web application.
+   The design of our web application consists of 
+   
 2. The architecture, better to use a diagram to illustrate the components and their relations. 
-3. Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.  
+   
+3. Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.
+   - React: for dynamic display of the board and chat 
+   - Websockets: for communication (sending actions and chat messages)
+   - Database: for users(wins and loses)
+   - AJAX for CGI components
+   - Python for AI bot (Dave)
 
 ## Milestones & schedule
 
@@ -30,12 +44,12 @@ List of tasks/milestones/check points of your project with time schedule. For gr
 
 | Task ID | Description   |  Due date | Lead   |  
 | :----:  | :------------ | :-----:   | :------: |  
-|  1      | Project research & team up | Day 5 of week 9 | who | 
-|  2      | Project proposal | Day 1 of week 10 | who |
-|  3      | Project check point  | date | who  |
-|  4      | Project check point  | date  | who  |
-|  5      | Project demonstration | Day 5 of week 12 | who  |
-|  6      | Project submission | Day 5 of week 13 | who   |
+|  1      | Project research & team up | Day 5 of week 9 | N/A | 
+|  2      | Project proposal | Day 1 of week 10 | N/A |
+|  3      | Project check point  | date | N/A  |
+|  4      | Project check point  | date  | N/A  |
+|  5      | Project demonstration | Day 5 of week 12 | N/A  |
+|  6      | Project submission | Day 5 of week 13 | N/A   |
 
 
 ## References
