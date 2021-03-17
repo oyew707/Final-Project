@@ -1,6 +1,18 @@
+"""
+-------------------------------------------------------
+[Program Description]
+-------------------------------------------------------
+Author:  Einstein Oyewole
+ID:      180517070
+Email:   oyew7070@mylaurier.ca
+__updated__ = ""
+-------------------------------------------------------
+"""
+
+# Imports
 import numpy as np
-import random
-from copy import deepcopy
+
+# Constants
 
 
 class tic_tac_toe:
@@ -34,7 +46,7 @@ class tic_tac_toe:
         return actions
 
     def results(self, action, player):
-        assert (player == "x" and self.turn == 1) or (player == "y" and self.turn == -1)
+        assert (player == "x" and self.turn == 1) or (player == "y" and self.turn == -1), "wrong turn"
         if self.turn == 1:
             self.state[action[0]][action[1]] = "x"
             self.turn = -1
@@ -93,48 +105,4 @@ class tic_tac_toe:
             ut = 0
         self.win = ut
         return ut
-
-
-def max_val(board, player):
-    if board.terminal_test() is not None:
-        return board.utility()
-    actions = board.get_action()
-    ls = []
-    for i in actions:
-        newboard = deepcopy(board)
-        newboard.results(i, player)
-        next_t = "y" if player == "x" else "x"
-        util = min_val(newboard, next_t)
-        ls.append(util)
-        max_utility = max(ls)
-    index = [i for i, x in enumerate(ls) if x == max_utility]
-    board.best_actions = [actions[i] for i in index]
-    # print([actions[i] for i in index])
-    rand_i = random.choice(index)
-    board.best_action = actions[rand_i]
-    return max_utility*len(index)
-
-
-def min_val(board, player):
-    if board.terminal_test() is not None:
-        return board.utility()
-    actions = board.get_action()
-    ls = []
-    for i in actions:
-        newboard = deepcopy(board)
-        newboard.results(i, player)
-        next_t = "y" if player == "x" else "x"
-        util = max_val(newboard, next_t)
-        ls.append(util)
-        min_utility = min(ls)
-    index = [i for i, x in enumerate(ls) if x == min_utility]
-    rand_i = random.choice(index)
-    board.best_actions = [actions[i] for i in index]
-    # print()
-    # print(board.state)
-    # print(actions)
-    # print([actions[i] for i in index])
-    board.best_action = actions[rand_i]
-    return min_utility*len(index)
-
 

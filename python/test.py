@@ -1,52 +1,49 @@
-from minimax import *
+from Utility import *
+from tic_tac_toe import *
+from Player import *
 
-# board = tic_tac_toe("x", "y", -1)
-# done = None
-# print("you are x")
-#
-# while done is None:
-#
-#     for i in board.state:
-#         print(i)
-#     if board.turn == 1:
-#         while True:
-#             try:
-#                 input_action_1 = int(input("Enter row:"))
-#                 input_action_2 = int(input("Enter column:"))
-#                 assert input_action_1 in [1, 2, 0] and input_action_2 in [1, 2, 0]
-#                 assert [input_action_1, input_action_2] in board.get_action()
-#                 break
-#             except:
-#                 print("Input error has to be within 0 and 2 inclusive")
-#         new_state = board.results([input_action_1, input_action_2], "x")
-#         board.set_state(new_state)
-#
-#     else:
-#         util = min_val(board, "y")
-#         print(board.best_action, " ", util)
-#         action = board.best_action
-#         new_state = board.results(action, "y")
-#         board.set_state(new_state)
-#         ps = False
-#     for i in board.state:
-#         print(i)
-#     print(board.terminal_test())
-#     print("\n\n")
-#     if board.terminal_test() is not None or board.terminal_test() == "Draw":
-#         print("Game over\nWinner is", board.utility())
-#         if board.utility() == 1:
-#             print("Player X")
-#         elif board.utility() == -1:
-#             print("Player Y")
-#         else:
-#             print("Draw")
-#
-#         break
+# Player RL
+# player_x = Player("x")
+# player_y = Player("y")
+# player_x, player_y = train(player_1=player_x, player_2=player_y, epochs = 10000)
 
-board = tic_tac_toe("x", "y", -1)
-board.set_state([[None, None, None], [None, None, None], [None, None, None]])
-print(max_val(board, "y"))
-print(board.best_action)
-print(board.best_actions)
-print(board.state)
+# Player Minimax
+# player_x = MinimaxPlayer("x")
+# player_y = MinimaxPlayer("y")
+
+# Player Human
+player_x = HumanPlayer("x")
+player_y = HumanPlayer("y")
+
+# Who starts
+turn = -1
+board = tic_tac_toe("x", "y", turn)
+
+# Show Empty board
+for i in board.state:
+    print(i)
+
+while True:
+    if board.turn == 1:
+        move(player_x, board)
+    else:
+        move(player_y, board)
+
+    # Show board after move
+    for i in board.state:
+        print(i)
+
+    print("\n\n")
+
+    if board.terminal_test() is not None or board.terminal_test() == "Draw":
+        print("Game over\nWinner is:")
+        if board.utility() == 1:
+            print("Player X")
+        elif board.utility() == -1:
+            print("Player Y")
+        else:
+            print("Draw")
+
+        break
+
 
