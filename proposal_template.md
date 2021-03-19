@@ -35,7 +35,8 @@ Briefly describe the major computing problem need to solve in your project.
          - Database: Retaining player information (Wins, losses, etc. )
    
 2. The architecture, better to use a diagram to illustrate the components and their relations.
-   ![Image showing the architecture of the web application](image/Web%20Arch.png)   
+  
+   ![Image showing the architecture of the web application](image/Web%20Arch.png){width=600px}  
 
 3. Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.
    - React: for dynamic display of the board and chat 

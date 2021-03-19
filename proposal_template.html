@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Cole Hanniwell, Einstein Oyewole, Nick Dyer " />
+  <meta name="dcterms.date" content="2021-03-22" />
+  <title>Tic Tac Toe </title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="proposal.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Tic Tac Toe<br></h1>
+<p class="author">Cole Hanniwell, Einstein Oyewole, Nick Dyer<br></p>
+<p class="date">2021-03-22</p>
+</header>
+<h2 id="introduction">Introduction</h2>
+<p>The goal of our project is to create a web interface that makes playing tic-tac-toe fun. The application allows users to test their strategy against a bot and other users on the internet.</p>
+<p>The project would provide a beautiful user Interface with HTML, React and JavaScript, in order to make the overall experience a delight.</p>
+<h2 id="problem-solving-and-algorithms">Problem solving and algorithms</h2>
+<p>Briefly describe the major computing problem need to solve in your project.</p>
+<ol class="incremental" type="1">
+<li>2-player Game Service application</li>
+<li>Algorithms (advanced search and machine learning) to play the game.</li>
+<li>Allow two people to play the game without incurring as much delay using web socket</li>
+</ol>
+<h2 id="system-design">System Design</h2>
+<ol class="incremental" type="1">
+<li><p>System design of your solutions as a multi-tier Internet/web application. There are 3 tiers in our solutions, the client tier, the web tier, data tier.</p>
+<ul class="incremental">
+<li>The client tier:
+<ul class="incremental">
+<li>HTML, DOM, CSS: For displaying and accessing elements in our web document</li>
+<li>JavaScript: Used for client side computing and processing</li>
+<li>AJAX: Communicate with server</li>
+<li>React: DOM manipulation</li>
+</ul></li>
+<li>Web tier
+<ul class="incremental">
+<li>NodeJS and ExpressJS: Used for server side computing and for communication with clients</li>
+<li>Server Program: AI player</li>
+<li>Web pages: HTML files</li>
+</ul></li>
+<li>Data Tier
+<ul class="incremental">
+<li>Database: Retaining player information (Wins, losses, etc. )</li>
+</ul></li>
+</ul></li>
+<li><p>The architecture, better to use a diagram to illustrate the components and their relations.</p>
+<figure>
+<img src="image/Web%20Arch.png" width="600" alt="" /><figcaption>Image showing the architecture of the web application</figcaption>
+</figure></li>
+<li><p>Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.</p>
+<ul class="incremental">
+<li>React: for dynamic display of the board and chat</li>
+<li>Websockets: for communication (sending actions and chat messages)</li>
+<li>Database: for users(wins and loses)</li>
+<li>AJAX for CGI components</li>
+<li>Python for AI bot (Dave)</li>
+</ul></li>
+</ol>
+<h2 id="milestones-schedule">Milestones &amp; schedule</h2>
+<p>List of tasks/milestones/check points of your project with time schedule. For group project, it needs to provide the roles and tasks of each member.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Task ID</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">Due date</th>
+<th style="text-align: center;">Lead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Project research &amp; team up</td>
+<td style="text-align: center;">Day 5 of week 9</td>
+<td style="text-align: center;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Project proposal</td>
+<td style="text-align: center;">Day 1 of week 10</td>
+<td style="text-align: center;">N/A</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Project check point</td>
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Project check point</td>
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">N/A</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Project demonstration</td>
+<td style="text-align: center;">Day 5 of week 12</td>
+<td style="text-align: center;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">Project submission</td>
+<td style="text-align: center;">Day 5 of week 13</td>
+<td style="text-align: center;">N/A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References</h2>
+<p>A list of references you read for your project, such as papers, articles, data sources.</p>
+<h2 id="appendices">Appendices</h2>
+<ol class="incremental" type="1">
+<li><p>Check the project <a href="readme.txt">readme.txt</a> for detailed requirements and evaluation. You need to describe and claim new features in your project, so it is good (not required) to mention some new features in the proposal. For example, you can introduce more security features such as password encryption and HTTPS for your application. You can test to deploy your application on Docker.</p></li>
+<li><p>You may use HTML elements and CSS for better presentation of your proposal. For example, this HTML document is generated by using <a href="proposal_template.md">proposal_template.md</a> and <a href="proposal.css">proposal.css</a> and the following pandoc command</p></li>
+</ol>
+<pre><code>pandoc  -s  -i proposal_template.md -o proposal_template.html --css=proposal.css</code></pre>
+<ol class="incremental" start="3" type="1">
+<li>You can submit your proposal in PDF file format.</li>
+</ol>
+</body>
+</html>
