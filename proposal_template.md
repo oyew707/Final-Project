@@ -1,35 +1,42 @@
 ---
-title:  'CP476 Project: Tic Tac Toe<br>(project proposal template)'
-author: Cole Hanniwell, Einstein Oyewole, Nick Dyer
+title:  Tic Tac Toe<br>
+author: Cole Hanniwell, Einstein Oyewole, Nick Dyer<br>
 date: 2021-03-22
 ---
 
 ## Introduction
 
-General description and rationals of your project. 
+The goal of our project is to create a web interface that makes playing tic-tac-toe fun. The application allows users to test their strategy against a bot and other users on the internet.
 
-The problem to addressed could be information management related, data processing related Internet/Web applications or development tool, frameworks. 
+The project would provide a beautiful user Interface with HTML, React and JavaScript, in order to make the overall experience a delight.
  
 ## Problem solving and algorithms
 
 Briefly describe the major computing problem need to solve in your project. 
 
-1. Application data collection, representation and storage. You are allowed to use existing thirty party for your project. You need to refer the data source. 
-2. Algorithms to solve the computing problems for information or models.  
+1. 2-player Game Service application
+2. Algorithms (advanced search and machine learning) to play the game. 
+3. Allow two people to play the game without incurring as much delay using web socket
 
 ## System Design
 
-Design tic tac to
-- Python to make the computer player (Easy:greedy Medium:greedy(or minimax) Hard: minimax)
-- Two People on the same site (two player mode)
-- UI
-- Chat for players
-
 1. System design of your solutions as a multi-tier Internet/web application.
-   The design of our web application consists of 
+   There are 3 tiers in our solutions, the client tier, the web tier, data tier. 
+      - The client tier: 
+         - HTML, DOM, CSS: For displaying and accessing elements in our web document
+         - JavaScript: Used for client side computing and processing
+         - AJAX: Communicate with server
+         - React: DOM manipulation 
+      - Web tier
+         - NodeJS and ExpressJS: Used for server side computing and for communication with clients
+         - Server Program: AI player 
+         - Web pages: HTML files
+      - Data Tier
+         - Database: Retaining player information (Wins, losses, etc. )
    
-2. The architecture, better to use a diagram to illustrate the components and their relations. 
-   
+2. The architecture, better to use a diagram to illustrate the components and their relations.
+   ![Image showing the architecture of the web application](image/Web%20Arch.png)   
+
 3. Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.
    - React: for dynamic display of the board and chat 
    - Websockets: for communication (sending actions and chat messages)
