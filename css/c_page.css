@@ -1,0 +1,28 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+    grid-template-rows: 300px;
+    grid-gap: 15px;
+    justify-content: center;
+}
+.grid-item{
+    background-color: aquamarine;
+    text-align: center;
+    padding: 25px;
+}
+
+.grid-item:hover{
+    background-color: darkkhaki;
+}
+
+.grid-item:hover > .my-back{
+    display: block;
+}
+
+.grid-item:hover > .my-main{
+    display: none;
+}
+
+.my-back{
+    display: none;
+}

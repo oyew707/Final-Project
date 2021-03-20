@@ -1,0 +1,26 @@
+.grid-container-page{
+     display: grid;
+    grid-template-columns: minmax(350px,auto) minmax(auto, 350px);
+    grid-template-rows: auto;
+    grid-gap: 30px;
+}
+
+.Game{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, minmax(25px,75px));
+    grid-template-rows: repeat(3, minmax(25px,75px));
+    grid-gap: 2px;
+
+}
+
+.tac-box{
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    padding-top: 40%;
+}
+
+.chatBox{
+
+}
