@@ -1,47 +1,65 @@
 .grid-container-page{
-     display: grid;
-    grid-template-columns: minmax(350px,auto) minmax(auto, 350px);
+    display: grid;
+    grid-template-columns: minmax(250px,750px) minmax(250px, 750px);
     grid-template-rows: auto;
     grid-gap: 30px;
 }
 
 .Game{
     display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(3, minmax(25px,75px));
-    grid-template-rows: repeat(3, minmax(25px,75px));
+    /* justify-content: center; */
+    grid-template-columns: repeat(3, minmax(50px,150px));
+    grid-template-rows: repeat(3, minmax(50px,150px));
+    padding-left: 15%;
+    padding-top: 10%;
     grid-gap: 2px;
-
 }
 
 .tac-box{
     border-style: solid;
     border-width: 1px;
     text-align: center;
-    padding-top: 40%;
+    font-size : 40px;
 }
 
+.chatBox{
+    text-align: left;
+    padding-top: 10%;
+}
+
+body {
+    background-image: url("../image/space.jpg");
+    background-color: #000000;
+   }
+
 #content { 
-    padding:5px; 
     background:#ddd; 
     border-radius:5px; 
     overflow-y: scroll;
     border:1px solid #CCC; 
     margin-top:10px; 
-    height: 160px; 
+    height: 400px; 
+    width: 500px;
+    padding: 5px;
 }
 
 #input { 
     border-radius:2px; 
     border:1px solid #ccc;
     margin-top:10px; 
-    padding:5px; 
-    width:400px;  
+    padding: 5px;
+    width: 380px;
+    background:#ddd; 
 }
 
 #status { 
-    width:88px; 
+    border-radius:2px; 
+    border:1px solid #ccc;
+    margin-top:10px; 
+    padding: 5px;
+    
+    width:100px; 
     display:block; 
     float:left; 
-    margin-top:15px; 
+    background:#ddd; 
 }
