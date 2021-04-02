@@ -1,0 +1,9 @@
+.container {
+    max-width: 960px;
+    padding-left: 13em;
+  }
+
+.py-5 text-center {
+    text-align: center;
+
+}
