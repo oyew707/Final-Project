@@ -62,7 +62,7 @@ List of tasks/milestones/check points of your project with time schedule. For gr
 
 ## References
 
-A list of references you read for your project, such as papers, articles, data sources. 
+- Russell, Stuart J. (Stuart Jonathan). Artificial Intelligence : a Modern Approach. Upper Saddle River, N.J. :Prentice Hall, 2010.
 
 ## Appendices
 
