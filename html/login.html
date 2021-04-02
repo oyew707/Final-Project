@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <style>
+        .container{
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .myinput{
+            width: auto;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form style="margin-top: 10%; width: 25%" method="post" action="login.php">
+            <h1 style="text-align: center;display: inline-block"> Log in</h1>
+            <br><br>
+            <div style="display: flex; flex-direction: column; ">
+                <label for="usern"> Username </label>
+                <input type="text" autocomplete="off" id="usern" name="usern" class="myinput"/>
+            </div>
+            <div style="display: flex; flex-direction: column">
+                <label for="pass"> Password </label>
+                <input type="password" autocomplete="off" id="pass" name="pass" class="myinput"/>
+            </div>
+            <br>
+            <div style="display: flex; flex-direction: column">
+                <input type="submit" name="submit" value = "Submit" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
