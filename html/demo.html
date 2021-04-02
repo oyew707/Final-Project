@@ -3,7 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/c_page.css">
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+            grid-template-rows: 300px;
+            grid-gap: 15px;
+            justify-content: center;
+        }
+        .grid-item{
+            background-color: aquamarine;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .grid-item:hover{
+            background-color: darkkhaki;
+        }
+
+        .grid-item:hover > .my-back{
+            display: block;
+        }
+
+        .grid-item:hover > .my-main{
+            display: none;
+        }
+
+        .my-back{
+            display: none;
+        }
+
+    </style>
 
 </head>
 <body style="font-family: sans-serif">
@@ -13,7 +43,7 @@
     <h1 align="center"> Select a challenger </h1>
     
     <div class="grid-container" style="margin-top: 150px">
-        <div class="grid-item grid-item-1" id="Grid1">
+        <button class="grid-item grid-item-1" id="Grid1">
             <div class="my-main">
                 <h3>
                     Dave 2.0
@@ -27,8 +57,8 @@
                 <h2>Hard</h2>
             </div>
             
-        </div>
-        <div class="grid-item grid-item-2" id="Grid2">
+        </button>
+        <button class="grid-item grid-item-2" id="Grid2">
             <div class="my-main">
                 <h3>
                     Dave 1.1
@@ -47,8 +77,8 @@
             <div class="my-back">
                 <h2>Medium</h2>
             </div>
-        </div>
-        <div class="grid-item grid-item-3" id="Grid3">
+        </button>
+        <button class="grid-item grid-item-3" id="Grid3">
             <div class="my-main">
                 <h3>
                     Face off a friend
@@ -60,7 +90,7 @@
             <div class="my-back">
                 <h2>Multiplayer</h2>
             </div>
-        </div>
+        </button>
     </div>
 </div>
 

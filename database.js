@@ -1,85 +1,92 @@
 var mysql = require('mysql');
 /// const { connect } = require('node:http2');
-function newDatabase(){
+exports.newDatabase = function(){
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: ""
+        port: 55011,
+        password: "root"
     });
-    
-    
+
+
     con.connect(function(err){
         if (err) throw err;
         console.log("Connected!")
-    
+
         connect.query("CREATE DATABASE CP476_Project", function(err, result){
             if (err) throw err;
             console.log("Database Created");
         });
-        var sql = "CREATE TABLE users (username VARCHAR(255), name VARCHAR(255), password VARCHAR(255))";
+        var sql = "USE CP476_Project; CREATE TABLE users (username VARCHAR(255), name VARCHAR(255), password VARCHAR(255))";
         con.query(sql, function (err, result) {
             if (err) throw err;
             console.log("Table created");
         });
-    
+
     });
 
 }
 
 
-function signUp(){
+exports.signUp = function (username, name, password){
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: "",
+        port: 55011,
+        password: "root",
         database: "CP476_Project"
     });
-    
+
     con.connect(function(err){
         if(err) throw err;
         console.log("Conected!")
-    
-         var sql = "INSERT INTO users (username, name, password, role) VALUES ('mjordan@gmail.com', 'Michael Jordan', 'bennyrox$23',)";
-         con.query(sql, function (err, result) {
-             if (err) throw err;
-             console.log("1 record inserted");
-         });
-    
+
+        var sql = "INSERT INTO users (username, name, password) VALUES ('"+ username +"', '"+ name +"', '"+ password +"')";
+        con.query(sql, function (err, result) {
+            if (err) return false;
+            return true;
+            console.log("1 record inserted");
+        });
+
         con.end(function (err) {
             if (err) console.log(err.message);
             console.log("Disconnected");
         });
-    
+
     });
-    
+
 
 }
 
-function retrieveUser(){
+exports.retrieveUser = function(name, callback){
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: "",
+        port: 55011,
+        password: "root",
         database: "CP476_Project"
     });
     con.connect(function(err){
         if(err) throw err;
-        con.query("SELECT * from users where name ='' ", function(err, result){
+        res = con.query("SELECT * from users where username ='"+name+"' ", function(err, result){
             if (err) throw err;
-            console.log(result);
-         });
+            var rows = JSON.parse(JSON.stringify(result[0]));
+            console.log(rows);
+            return callback(rows.password);
+        });
+
     });
 }
 
 
-function setCookie(name, value, exp_days){
+exports.setCookie = function(name, value, exp_days){
     var d = new Date();
     d.setTime(d.getTime() + (exp_days*24*60*60*1000));
     var expires ="expires=" + d.toGMTString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/"
 }
 
-function getCookie(name){
+exports.getCookie = function (name){
     var cname = name + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -96,7 +103,7 @@ function getCookie(name){
 }
 
 
-function checkCookie(){
+var checkCookie = function(){
     var user = getCookie("username");
     if( user != ""){
         alert("Welcome again "+ user);
