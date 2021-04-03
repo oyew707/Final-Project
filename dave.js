@@ -1,7 +1,7 @@
 // https://medium.com/@martin.sikora/node-js-websocket-simple-chat-tutorial-2def3a841b61
 
 $ ( function () {
-   // "use strict";
+    // "use strict";
     // for better performance - to avoid searching in DOM
     var content = $('#content');
     var input = $('#input');
@@ -33,7 +33,7 @@ $ ( function () {
     // if browser doesn't support WebSocket, just show some notification and exit
     if (!window.WebSocket) {
         content.html($('<p>', { text: 'Sorry, but your browser doesn\'t '
-                                    + 'support WebSockets.'} ));
+                + 'support WebSockets.'} ));
         input.hide();
         $('span').hide();
         return;
@@ -50,7 +50,7 @@ $ ( function () {
     connection.onerror = function (error) {
         // just in there were some problems with conenction...
         content.html($('<p>', { text: 'Sorry, but there\'s some problem with your '
-                                    + 'connection or the server is down.' } ));
+                + 'connection or the server is down.' } ));
     };
 
     // most important part - incoming messages
@@ -82,7 +82,7 @@ $ ( function () {
             // insert every single message to the chat window
             for (var i=0; i < json.data.length; i++) {
                 addMessage(json.data[i].author, json.data[i].text,
-                           json.data[i].color, new Date(json.data[i].time));
+                    json.data[i].color, new Date(json.data[i].time));
             }
         } else if (json.type === 'message') { // it's a single message
             input.removeAttr('disabled'); // let the user write another message
@@ -90,7 +90,7 @@ $ ( function () {
                 if (pastMove == json.data.color){
                     if(pastMove == myColor){
                         alert("Not Your Move");
-                    }  
+                    }
                 }
                 else{
                     $('#'.concat(json.data.text)).css('background', json.data.color);
@@ -255,7 +255,7 @@ $ ( function () {
         if (connection.readyState !== 1) {
             status.text('Error');
             input.attr('disabled', 'disabled').val('Unable to comminucate '
-                                                 + 'with the WebSocket server.');
+                + 'with the WebSocket server.');
         }
     }, 3000);
 
@@ -264,9 +264,9 @@ $ ( function () {
      */
     function addMessage(author, message, color, dt) {
         content.prepend('<p><span style="color:' + color + '">' + author + '</span> @ ' +
-             + (dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours()) + ':'
-             + (dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes())
-             + ': ' + message + '</p>');
+            + (dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours()) + ':'
+            + (dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes())
+            + ': ' + message + '</p>');
     }
 
     function Test_Win(board){

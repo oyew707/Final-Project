@@ -35,6 +35,18 @@
 
     </style>
 
+    <script type="text/javascript">
+        document.getElementById("Grid1").onclick = function () {
+            window.location.href = "/game_dave1.html";
+        };
+        document.getElementById("Grid2").onclick = function () {
+            window.location.href = "/game_dave2.html";
+        };
+        document.getElementById("Grid3").onclick = function () {
+            window.location.href = "/game_page.html";
+        };
+    </script>
+
 </head>
 <body style="font-family: sans-serif">
 
@@ -43,7 +55,7 @@
     <h1 align="center"> Select a challenger </h1>
     
     <div class="grid-container" style="margin-top: 150px">
-        <button class="grid-item grid-item-1" id="Grid1">
+        <button class="grid-item grid-item-1" id="Grid1" onclick="location.href = 'http://localhost:15000/game_dave1.html';">
             <div class="my-main">
                 <h3>
                     Dave 2.0
@@ -58,7 +70,7 @@
             </div>
             
         </button>
-        <button class="grid-item grid-item-2" id="Grid2">
+        <button class="grid-item grid-item-2" id="Grid2" onclick="location.href = 'http://localhost:15000/game_dave2.html';">
             <div class="my-main">
                 <h3>
                     Dave 1.1
@@ -78,7 +90,7 @@
                 <h2>Medium</h2>
             </div>
         </button>
-        <button class="grid-item grid-item-3" id="Grid3">
+        <button class="grid-item grid-item-3" id="Grid3" onclick="location.href = 'http://localhost:15000/game_page.html';">
             <div class="my-main">
                 <h3>
                     Face off a friend

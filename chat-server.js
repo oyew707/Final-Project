@@ -11,6 +11,7 @@ var webSocketServer = require('websocket').server;
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var dbs = require("./database");
 
 /**
  * Global variables
@@ -29,7 +30,7 @@ function htmlEntities(str) {
 }
 
 // Array with some colors
-var colors = ['red', 'green', 'blue', 'magenta', 'purple', 'plum', 'orange'];
+var colors = ['blue', 'black'];
 // ... in random order
 colors.sort(function (a, b) { return Math.random() > 0.5; });
 
@@ -67,8 +68,9 @@ var wsServer = new webSocketServer({
 // tries to connect to the WebSocket server
 wsServer.on('request', function (request) {
     console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
-
-    // accept connection - you should check 'request.origin' to make sure that
+    console.log(clients.length)
+    if(clients.length < 2){
+         // accept connection - you should check 'request.origin' to make sure that
     // client is connecting from your website
     // (http://en.wikipedia.org/wiki/Same_origin_policy)
     var connection = request.accept(null, request.origin);
@@ -130,5 +132,5 @@ wsServer.on('request', function (request) {
             colors.push(userColor);
         }
     });
-
+    }
 });

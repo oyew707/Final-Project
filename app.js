@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var dbs = require("./database");
 
 const app = express();
-// app.set('view engine', 'ejs')
-// app.set('views', path.join(__dirname, '../html'));
 
 app.use(cookieParser("London is Blue"));
+
+app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
     res.redirect(`/login.html`)
@@ -24,11 +24,39 @@ app.get('/signup.html', (req, res) => {
 })
 
 app.get('/game_page.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/game_page.html'))
+    if(req.signedCookies){
+        res.sendFile(path.join(__dirname, '/html/game_page.html'))
+    }else{
+        res.redirect("/login.html")
+    }
 })
 
 app.get('/demo.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/demo.html'))
+
+    if(req.signedCookies){
+        res.sendFile(path.join(__dirname, '/html/demo.html'))
+    }else{
+        console.log("Redirecting");
+        res.redirect("/login.html")
+    }
+})
+
+app.get('/game_dave1.html', (req, res) => {
+
+    if(req.signedCookies){
+        res.sendFile(path.join(__dirname, '/html/game_dave1.html'))
+    }else{
+        res.redirect("/login.html")
+    }
+})
+
+app.get('/game_dave2.html', (req, res) => {
+
+    if(req.signedCookies){
+        res.sendFile(path.join(__dirname, '/html/game_dave2.html'))
+    }else{
+        res.redirect("/login.html")
+    }
 })
 
 app.get('/loggingin', (req, res) => {
@@ -42,8 +70,8 @@ app.get('/loggingin', (req, res) => {
             stored_password = await result;
             console.log("Retrieved pass"+stored_password);
             if (stored_password === password){ // Correct log in
-                res.cookie("access", username, {signed : true})
-                res.redirect("/demo.html")
+                res.cookie( "user"+username, password, {signed : true, maxAge: 25000});
+                res.redirect("/demo.html");
             }else{ // Incorect log in
                 res.send("Incorrect log in credentials");
             }
@@ -53,18 +81,6 @@ app.get('/loggingin', (req, res) => {
     }
 
 })
-
-// router.get("/loggingin/:username/:password",(req, res) =>{
-//     var username = req.params("username");
-//     var password = req.params("password");
-//     var stored_password = dbs.retrieveUser(username);
-//     if (stored_password === password){ // Correct log in
-//         res.cookie("access", username, {signed : true})
-//         res.redirect("/game_page.html")
-//     }else{ // Incorect log in
-//         res.send("Cannot sign in ")
-//     }
-// })
 
 app.get("/signup",(req, res) =>{
     var username = req.query.username;
@@ -76,8 +92,9 @@ app.get("/signup",(req, res) =>{
         dbs.signUp(username, name, password, async function(result){
             inserted = await result;
             if(inserted){
-                res.cookie("access", username, {signed : true})
-                res.redirect("/demo.html")
+
+                res.cookie("user"+username, password, {signed : true, maxAge: 25000});
+                res.redirect("/demo.html");
             }else{
                 res.send("Error cannot sign up, Try different Authentication");
             }
@@ -97,7 +114,7 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.send('error');
 });
 
 app.listen(15000, () => {
