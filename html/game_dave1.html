@@ -3,45 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/game_page.css">
+    <link rel="stylesheet" href="/css/game_page.css">
 </head>
 <body>
-    <div style="align-content: center">
-        <div class="grid-container-page" >
-            <div class="Game">
-                <button class="tac-box" id = "1">
-                X
-                </button>
-                <button class="tac-box" id = "2">
-                O
-                </button>
-                <button class="tac-box" id = "3">
-                X
-                </button>
-                <button class="tac-box" id = "4">
-                O
-                </button>
-                <button class="tac-box" id = "5">
-                O
-                </button>
-                <button class="tac-box" id = "6">
-                O
-                </button>
-                <button class="tac-box" id = "7">
-                X
-                </button>
-                <button class="tac-box" id = "8">
-                X
-                </button>
-                <button class="tac-box" id = "9">
-                O
-                </button> 
-            </div>
-            <div class="chatBox" >
-
-            </div>
+<div >
+    <div class="grid-container-page" >
+        <div class="Game">
+            <button class="tac-box" id = "Top_Left"></button>
+            <button class="tac-box" id = "Top_Center"></button>
+            <button class="tac-box" id = "Top_Right"></button>
+            <button class="tac-box" id = "Middle_Left"></button>
+            <button class="tac-box" id = "Middle_Center"></button>
+            <button class="tac-box" id = "Middle_Right"></button>
+            <button class="tac-box" id = "Bottom_Left"></button>
+            <button class="tac-box" id = "Bottom_Center"></button>
+            <button class="tac-box" id = "Bottom_Right"></button>
         </div>
+        <div class="chatBox" id = "l" >
+        </div>
+        <div id = "target">Your Turn</div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/dave-frontend.js"></script>
     </div>
+</div>
 
 </body>
 </html>

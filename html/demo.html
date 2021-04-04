@@ -32,30 +32,29 @@
         .my-back{
             display: none;
         }
+        #p{
+            display: none;
+        }
 
     </style>
 
     <script type="text/javascript">
-        document.getElementById("Grid1").onclick = function () {
-            window.location.href = "/game_dave1.html";
-        };
-        document.getElementById("Grid2").onclick = function () {
-            window.location.href = "/game_dave2.html";
-        };
-        document.getElementById("Grid3").onclick = function () {
-            window.location.href = "/game_page.html";
-        };
+        function mult(){
+
+            document.getElementById("l").style.display = "none";
+            document.getElementById("p").style.display = "block";
+        }
     </script>
 
 </head>
 <body style="font-family: sans-serif">
 
-<div style="align-content: center">
+<div style="align-content: center" id = "l">
     
     <h1 align="center"> Select a challenger </h1>
     
     <div class="grid-container" style="margin-top: 150px">
-        <button class="grid-item grid-item-1" id="Grid1" onclick="location.href = 'http://localhost:15000/game_dave1.html';">
+        <button class="grid-item grid-item-1" id="Grid1" onclick="location.href = 'http://localhost:15000/game_dave2.html';">
             <div class="my-main">
                 <h3>
                     Dave 2.0
@@ -70,7 +69,7 @@
             </div>
             
         </button>
-        <button class="grid-item grid-item-2" id="Grid2" onclick="location.href = 'http://localhost:15000/game_dave2.html';">
+        <button class="grid-item grid-item-2" id="Grid2" onclick="location.href = 'http://localhost:15000/game_dave1.html';">
             <div class="my-main">
                 <h3>
                     Dave 1.1
@@ -90,7 +89,7 @@
                 <h2>Medium</h2>
             </div>
         </button>
-        <button class="grid-item grid-item-3" id="Grid3" onclick="location.href = 'http://localhost:15000/game_page.html';">
+        <button class="grid-item grid-item-3" id="Grid3" onclick="mult()">
             <div class="my-main">
                 <h3>
                     Face off a friend
@@ -105,6 +104,12 @@
         </button>
     </div>
 </div>
-
+<div style="align-content: center" id = "p">
+    <form action="game_page.html" method="get">
+        <h3> Note Every room lasts for 30 minutes</h3>
+        <p>RoomID: <input type=text name="room" id="room" size=20> </p>
+        <p><input type="submit" name="submit" value="Submit"></p>
+    </form>
+</div>
 </body>
 </html>

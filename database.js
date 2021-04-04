@@ -78,6 +78,77 @@ exports.retrieveUser = function(name, callback){
     });
 }
 
+exports.addRoom = function(username, room, callback){
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        port: 55011,
+        password: "root",
+        database: "CP476_Project"
+    });
+
+    con.connect(function(err){
+        if(err) throw err;
+        console.log("Conected!")
+
+        var sql = "INSERT INTO active_users (username, room_id) VALUES ('"+ username +"', '"+ room +"')";
+        con.query(sql, function (err, result) {
+            if (err) return callback(false);
+            else
+                return callback(true);
+            console.log("1 record inserted");
+        });
+
+        con.end(function (err) {
+            if (err) console.log(err.message);
+            console.log("Disconnected");
+        });
+
+    });
+
+}
+
+exports.retrieveRooms = function(room_id, callback){
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        port: 55011,
+        password: "root",
+        database: "CP476_Project"
+    });
+    con.connect(function(err){
+        if(err) throw err;
+        res = con.query("SELECT * from active_users where room_id ='"+room_id+"' ", function(err, result){
+            if (err) throw err;
+            var rows = [];
+            for (var i = 0; i < result.length; i++) {
+                rows.push(JSON.parse(JSON.stringify(result[i])));
+            }
+            return callback(rows);
+        });
+
+    });
+}
+
+exports.deleteRooms = function (){
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        port: 55011,
+        password: "root",
+        database: "CP476_Project"
+    });
+    con.connect(function(err){
+        if(err) throw err;
+        res = con.query("DELETE FROM active_users WHERE timestamp < (select now() - INTERVAL 30 MINUTE )", function(err, result){
+            if (err) throw err;
+            console.log("deleted");
+        });
+
+    });
+}
+
+
 exports.setCookie = function(name, value, exp_days){
     var d = new Date();
     d.setTime(d.getTime() + (exp_days*24*60*60*1000));

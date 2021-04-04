@@ -2,12 +2,14 @@ const express = require('express');
 //var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-//var router = express.Router();
+var cors = require('cors')
 var dbs = require("./database");
+const {spawn} = require('child_process');
 
 const app = express();
 
 app.use(cookieParser("London is Blue"));
+app.use(cors());
 
 app.use(express.static(__dirname));
 
@@ -25,43 +27,61 @@ app.get('/signup.html', (req, res) => {
 
 app.get('/game_page.html', (req, res) => {
     if(req.signedCookies){
-        res.sendFile(path.join(__dirname, '/html/game_page.html'))
+        var room_id = req.query.room;
+        console.log(room_id);
+        dbs.retrieveRooms(room_id,function (result){
+            if (result.length >=2 ){
+                res.send("Room already in use");
+            }else{
+                dbs.addRoom("username", room_id, function (result_1){
+                    if (result_1){
+
+                        res.sendFile(path.join(__dirname, '/html/game_page.html'));
+                    }else{
+                        res.send("Error could not add you to room");
+                    }
+                })
+
+            }
+        });
     }else{
         res.redirect("/login.html")
     }
 })
 
 app.get('/demo.html', (req, res) => {
-
     if(req.signedCookies){
-        res.sendFile(path.join(__dirname, '/html/demo.html'))
+        console.log(req.cookie);
+        res.sendFile(path.join(__dirname, '/html/demo.html'));
     }else{
         console.log("Redirecting");
-        res.redirect("/login.html")
+        res.redirect("/login.html");
     }
 })
 
 app.get('/game_dave1.html', (req, res) => {
 
     if(req.signedCookies){
-        res.sendFile(path.join(__dirname, '/html/game_dave1.html'))
+        res.sendFile(path.join(__dirname, '/html/game_dave1.html'));
     }else{
-        res.redirect("/login.html")
+        res.redirect("/login.html");
     }
 })
 
 app.get('/game_dave2.html', (req, res) => {
 
     if(req.signedCookies){
-        res.sendFile(path.join(__dirname, '/html/game_dave2.html'))
+        res.sendFile(path.join(__dirname, '/html/game_dave2.html'));
     }else{
-        res.redirect("/login.html")
+        res.redirect("/login.html");
     }
 })
 
 app.get('/loggingin', (req, res) => {
+
     var username = req.query.username;
     var password = req.query.password;
+    console.log("here");
     console.log(username);
     console.log(password);
     try{
@@ -70,12 +90,13 @@ app.get('/loggingin', (req, res) => {
             stored_password = await result;
             console.log("Retrieved pass"+stored_password);
             if (stored_password === password){ // Correct log in
-                res.cookie( "user"+username, password, {signed : true, maxAge: 25000});
+                res.cookie( "user"+username, password, {signed : true, maxAge: 600000});
                 res.redirect("/demo.html");
             }else{ // Incorect log in
                 res.send("Incorrect log in credentials");
             }
         });
+
     } catch (err){
         res.send("Server Error ");
     }
@@ -92,8 +113,7 @@ app.get("/signup",(req, res) =>{
         dbs.signUp(username, name, password, async function(result){
             inserted = await result;
             if(inserted){
-
-                res.cookie("user"+username, password, {signed : true, maxAge: 25000});
+                res.cookie("user"+username, password, {signed : true, maxAge: 600000});
                 res.redirect("/demo.html");
             }else{
                 res.send("Error cannot sign up, Try different Authentication");
@@ -105,6 +125,35 @@ app.get("/signup",(req, res) =>{
     }
 
 })
+
+app.get("/rundavescript",function(req, res){
+    console.log("are you here");
+    var alg = req.query.alg;
+    console.log(alg);
+    var board = req.query.board;
+    console.log("text here");
+    console.log(board);
+    board = board.split("_").join("/");
+    var symbol = "y";
+    console.log(board);
+    var dataToSend;
+
+    if(board === "n/n/n/n/n/n/n/n/n" && alg == "minimax"){
+        res.send("[1, 1]");
+    }else{
+        // spawn new child process to call the python script
+        const python = spawn('python', ['python/dave.py', alg, symbol, board]);
+        // collect data from script
+        python.stdout.on('data', async function (data) {
+        console.log('Pipe data from python script ...');
+        dataToSend = await data.toString();
+        console.log(dataToSend);
+        res.send(dataToSend);
+        });
+    }
+
+})
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -120,3 +169,19 @@ app.use(function(err, req, res, next) {
 app.listen(15000, () => {
     console.log(`Example app listening at http://localhost:15000`)
 })
+
+
+try{
+    dbs.deleteRooms();
+}catch(err){
+    console.log(err);
+}
+setInterval(function(){
+    try{
+        dbs.deleteRooms();
+    }catch(err){
+        console.log(err);
+    }
+
+}, 18000000);
+

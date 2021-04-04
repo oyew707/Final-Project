@@ -39,8 +39,10 @@ $ ( function () {
         return;
     }
 
+    var url = new URL(window.location.href);
+    var room_id = url.searchParams.get("room");
     // open connection
-    var connection = new WebSocket('ws://127.0.0.1:6789');
+    var connection = new WebSocket('ws://127.0.0.1:6789/?room_id='+room_id);
 
     connection.onopen = function () {
         input.removeAttr('disabled');
