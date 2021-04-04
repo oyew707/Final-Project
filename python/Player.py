@@ -22,7 +22,7 @@ INITIAL_LR = 0.9
 
 class Player:
     PLAYER_TYPE = "RL"
-    exploration_rate = 0.3
+    exploration_rate = 0.2
     learning_rate = 0.9
     discount_factor = 0.8
 
@@ -107,12 +107,14 @@ class MinimaxPlayer:
         self.symbol = symbol
 
     def nextAction(self, board):
-        if self.symbol == "y":
-            min_val(board, self.symbol)
+        if board.get_state() == [[None, None, None], [None, None, None], [None, None, None]]:
+            action = [1,1]
         else:
-            max_val(board, self.symbol)
-        action = board.best_action
-
+            if self.symbol == "y":
+                min_val(board, self.symbol)
+            else:
+                max_val(board, self.symbol)
+            action = board.best_action
         return action
 
     def exponential_decay(self, epoch):

@@ -45,16 +45,17 @@ def min_val(board, player):
     board.best_action = actions[rand_i]
     return min_utility*len(index)
 
-def train(player_1, player_2, epochs=500):
+def train(player_1, player_2, epochs=500, verbose = True):
     assert player_1.PLAYER_TYPE == "RL" or player_1.PLAYER_TYPE == "Minimax", "Only train with RL or Minimax"
     assert player_2.PLAYER_TYPE == "RL" or player_2.PLAYER_TYPE == "Minimax", "Only train with RL or Minimax"
     turn = 1
     for j in range(epochs):
-        print("Round ", j)
+        if verbose: print("Round ", j)
         board = tic_tac_toe(player_1.symbol, player_2.symbol, turn)
         while True:
-            for i in board.state:
-                print(i)
+            if verbose:
+                for i in board.state:
+                    print(i)
             actions = board.get_action()
             if board.turn == 1:  # player 1
                 x_act = player_1.nextAction(board)
@@ -85,9 +86,26 @@ def train(player_1, player_2, epochs=500):
 
         player_1.exponential_decay(j)
         player_2.exponential_decay(j)
-        print("Winner is:", board.utility())
+        if verbose: print("Winner is:", board.utility())
+        # input()
         turn *= -1
+        if j == epochs-1: break
     return player_1, player_2
 
 
-
+def create_board(board):
+    """
+    -------------------------------------------------------
+    [Function Description]
+    -------------------------------------------------------
+    Parameters:
+       [parameter name - parameter description (parameter type and constraints)]
+    Returns:
+       [return value name - return value description (return value type)]
+    -------------------------------------------------------
+    """
+    l = board.strip().split("/")
+    for j in range(len(l)):
+        if l[j] == "n":
+            l[j] = None
+    return [l[i:i+3] for i in range(0, len(l), 3)]
