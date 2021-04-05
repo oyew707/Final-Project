@@ -1,49 +1,27 @@
 ---
-title:  Tic Tac Toe<br>
-author: Cole Hanniwell, Einstein Oyewole, Nick Dyer<br>
+title:  'CP476 Project: Your Project Title<br>(project proposal template)'
+author: List of team members
 date: 2021-03-22
 ---
 
 ## Introduction
 
-The goal of our project is to create a web interface that makes playing tic-tac-toe fun. The application allows users to test their strategy against a bot and other users on the internet.
+General description and rationals of your project. 
 
-The project would provide a beautiful user Interface with HTML, React and JavaScript, in order to make the overall experience a delight.
+The problem to addressed could be information management related, data processing related Internet/Web applications or development tool, frameworks. 
  
 ## Problem solving and algorithms
 
 Briefly describe the major computing problem need to solve in your project. 
 
-1. 2-player Game Service application
-2. Algorithms (advanced search and machine learning) to play the game. 
-3. Allow two people to play the game without incurring as much delay using web socket
+1. Application data collection, representation and storage. You are allowed to use existing thirty party for your project. You need to refer the data source. 
+2. Algorithms to solve the computing problems for information or models.  
 
 ## System Design
 
 1. System design of your solutions as a multi-tier Internet/web application.
-   There are 3 tiers in our solutions, the client tier, the web tier, data tier. 
-      - The client tier: 
-         - HTML, DOM, CSS: For displaying and accessing elements in our web document
-         - JavaScript: Used for client side computing and processing
-         - AJAX: Communicate with server
-         - React: DOM manipulation 
-      - Web tier
-         - NodeJS and ExpressJS: Used for server side computing and for communication with clients
-         - Server Program: AI player 
-         - Web pages: HTML files
-      - Data Tier
-         - Database: Retaining player information (Wins, losses, etc. )
-   
-2. The architecture, better to use a diagram to illustrate the components and their relations.
-  
-   ![Image showing the architecture of the web application](image/Web%20Arch.png){width=600px}  
-
-3. Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.
-   - React: for dynamic display of the board and chat 
-   - Websockets: for communication (sending actions and chat messages)
-   - Database: for users(wins and loses)
-   - AJAX for CGI components
-   - Python for AI bot (Dave)
+2. The architecture, better to use a diagram to illustrate the components and their relations. 
+3. Tools to be used in the project, such as web server, CGI programming tool, databases, client side tools.  
 
 ## Milestones & schedule
 
@@ -52,17 +30,17 @@ List of tasks/milestones/check points of your project with time schedule. For gr
 
 | Task ID | Description   |  Due date | Lead   |  
 | :----:  | :------------ | :-----:   | :------: |  
-|  1      | Project research & team up | Day 5 of week 9 | N/A | 
-|  2      | Project proposal | Day 1 of week 10 | N/A |
-|  3      | Project check point  | date | N/A  |
-|  4      | Project check point  | date  | N/A  |
-|  5      | Project demonstration | Day 5 of week 12 | N/A  |
-|  6      | Project submission | Day 5 of week 13 | N/A   |
+|  1      | Project research & team up | Day 5 of week 9 | who | 
+|  2      | Project proposal | Day 1 of week 10 | who |
+|  3      | Project check point  | date | who  |
+|  4      | Project check point  | date  | who  |
+|  5      | Project demonstration | Day 5 of week 12 | who  |
+|  6      | Project submission | Day 5 of week 13 | who   |
 
 
 ## References
 
-- Russell, Stuart J. (Stuart Jonathan). Artificial Intelligence : a Modern Approach. Upper Saddle River, N.J. :Prentice Hall, 2010.
+A list of references you read for your project, such as papers, articles, data sources. 
 
 ## Appendices
 
