@@ -359,9 +359,10 @@ $ ( function () {
         let ca =d.split(';');
         for(var i=0;i < ca.length;i++) {
             var c = ca[i].trim();
-            if (c.startsWith("user")){
+            if (c.startsWith("usertic")){
                 var da = c.split("=");
-                return da[0].substring(4, da[0].length);
+                var value = decodeURIComponent(da[1]).split(".")
+                return value[0].substring(2, value[0].length);
             }
             console.log(c);
         }

@@ -8,15 +8,18 @@ player_x = Player("x")
 player_y = Player("y")
 
 print("training")
-player_x, player_y = train(player_1=player_x, player_2=player_y, epochs = 3000)
-player_x, _ = train(player_1=player_x, player_2=py, epochs = 100)
-_, player_y = train(player_1=px, player_2=player_y, epochs = 100)
 
-
-print("Saving to pickle")
-fp1 = open("player_x.pkl", "wb");
-pickle.dump(player_x.Q, fp1)
-fp1.close()
+player_x, player_y = train(player_1=player_x, player_2=player_y, epochs = 50000, verbose=True)
+_, player_y = train(player_1=px, player_2=player_y, epochs = 300, verbose=True)
+#player_x, _ = train(player_1=player_x, player_2=py, epochs = 50, verbose=True)
+# print(player_y.bes)
+# print(len(player_y.Q))
+#player_y.Q = {**player_x.Q, **player_y.Q}
+# print(len(player_y.Q))
+# print("Saving to pickle")
+# fp1 = open("player_x.pkl", "wb");
+# pickle.dump(player_x.Q, fp1)
+# fp1.close()
 
 print("Saving to pickle II")
 fp2 = open("player_y.pkl", "wb");

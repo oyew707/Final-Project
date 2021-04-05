@@ -2,10 +2,9 @@ var mysql = require('mysql');
 /// const { connect } = require('node:http2');
 exports.newDatabase = function(){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        port: 55011,
-        password: "root"
+        host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
+        user: "admin",
+        password: "pressure"
     });
 
 
@@ -30,10 +29,9 @@ exports.newDatabase = function(){
 
 exports.signUp = function (username, name, password){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        port: 55011,
-        password: "root",
+        host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
+        user: "admin",
+        password: "pressure",
         database: "CP476_Project"
     });
 
@@ -60,10 +58,9 @@ exports.signUp = function (username, name, password){
 
 exports.retrieveUser = function(name, callback){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        port: 55011,
-        password: "root",
+        host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
+        user: "admin",
+        password: "pressure",
         database: "CP476_Project"
     });
     con.connect(function(err){
@@ -80,10 +77,9 @@ exports.retrieveUser = function(name, callback){
 
 exports.addRoom = function(username, room, callback){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        port: 55011,
-        password: "root",
+        host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
+        user: "admin",
+        password: "pressure",
         database: "CP476_Project"
     });
 
@@ -110,10 +106,9 @@ exports.addRoom = function(username, room, callback){
 
 exports.retrieveRooms = function(room_id, callback){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        port: 55011,
-        password: "root",
+        host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
+        user: "admin",
+        password: "pressure",
         database: "CP476_Project"
     });
     con.connect(function(err){
@@ -132,10 +127,9 @@ exports.retrieveRooms = function(room_id, callback){
 
 exports.deleteRooms = function (){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        port: 55011,
-        password: "root",
+        host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
+        user: "admin",
+        password: "pressure",
         database: "CP476_Project"
     });
     con.connect(function(err){

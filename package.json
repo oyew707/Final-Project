@@ -1,0 +1,29 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "Header for group project: Project title: ??? Name: Cole Hanniwell, Einstein Oyewole, Nick Dyer ID: 180320780, 180517070, 180348830 Statement: We claim that the enclosed project submission is our team work.",
+  "main": "app.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "websocket": "^1.0.33"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "clean": "node chat-server.js",
+    "dev": "concurrently --kill-others \"npm run start\" \"npm run clean\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oyew707/Final-Project.git"
+  },
+  "author": "Nick, Cole, Me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oyew707/Final-Project/issues"
+  },
+  "homepage": "https://github.com/oyew707/Final-Project#readme"
+}

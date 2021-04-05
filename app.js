@@ -14,11 +14,19 @@ app.use(cors());
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.redirect(`/login.html`)
+    if(!req.signedCookies["usertic"]) {
+        res.redirect('/login.html');
+    }else{
+        res.sendFile(path.join(__dirname, '/html/demo.html'));
+    }
 })
 
 app.get('/login.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/login.html'))
+    if(!req.signedCookies["usertic"]) {
+        res.sendFile(path.join(__dirname, '/html/login.html'))
+    }else{
+        res.sendFile(path.join(__dirname, '/html/demo.html'));
+    }
 })
 
 app.get('/signup.html', (req, res) => {
@@ -26,7 +34,7 @@ app.get('/signup.html', (req, res) => {
 })
 
 app.get('/game_page.html', (req, res) => {
-    if(req.signedCookies){
+    if(req.signedCookies["usertic"]){
         var room_id = req.query.room;
         console.log(room_id);
         dbs.retrieveRooms(room_id,function (result){
@@ -50,8 +58,8 @@ app.get('/game_page.html', (req, res) => {
 })
 
 app.get('/demo.html', (req, res) => {
-    if(req.signedCookies){
-        console.log(req.cookie);
+    if(req.signedCookies["usertic"]){
+        console.log(req.signedCookies["usertic"]);
         res.sendFile(path.join(__dirname, '/html/demo.html'));
     }else{
         console.log("Redirecting");
@@ -61,7 +69,7 @@ app.get('/demo.html', (req, res) => {
 
 app.get('/game_dave1.html', (req, res) => {
 
-    if(req.signedCookies){
+    if(req.signedCookies["usertic"]){
         res.sendFile(path.join(__dirname, '/html/game_dave1.html'));
     }else{
         res.redirect("/login.html");
@@ -70,7 +78,7 @@ app.get('/game_dave1.html', (req, res) => {
 
 app.get('/game_dave2.html', (req, res) => {
 
-    if(req.signedCookies){
+    if(req.signedCookies["usertic"]){
         res.sendFile(path.join(__dirname, '/html/game_dave2.html'));
     }else{
         res.redirect("/login.html");
@@ -90,7 +98,7 @@ app.get('/loggingin', (req, res) => {
             stored_password = await result;
             console.log("Retrieved pass"+stored_password);
             if (stored_password === password){ // Correct log in
-                res.cookie( "user"+username, password, {signed : true, maxAge: 600000});
+                res.cookie( "usertic", username, {signed : true, maxAge: 18000000});
                 res.redirect("/demo.html");
             }else{ // Incorect log in
                 res.send("Incorrect log in credentials");
@@ -113,8 +121,8 @@ app.get("/signup",(req, res) =>{
         dbs.signUp(username, name, password, async function(result){
             inserted = await result;
             if(inserted){
-                res.cookie("user"+username, password, {signed : true, maxAge: 600000});
-                res.redirect("/demo.html");
+                // res.cookie("usertic", username, {signed : true, maxAge: 18000000});
+                res.redirect("/login.html");
             }else{
                 res.send("Error cannot sign up, Try different Authentication");
             }
@@ -138,11 +146,11 @@ app.get("/rundavescript",function(req, res){
     console.log(board);
     var dataToSend;
 
-    if(board === "n/n/n/n/n/n/n/n/n" && alg == "minimax"){
+    if(board === "n/n/n/n/n/n/n/n/n" && alg === "minimax"){
         res.send("[1, 1]");
     }else{
         // spawn new child process to call the python script
-        const python = spawn('python', ['python/dave.py', alg, symbol, board]);
+        const python = spawn('python3', ['python/dave.py', alg, symbol, board]);
         // collect data from script
         python.stdout.on('data', async function (data) {
         console.log('Pipe data from python script ...');
@@ -166,8 +174,8 @@ app.use(function(err, req, res, next) {
     res.send('error');
 });
 
-app.listen(15000, () => {
-    console.log(`Example app listening at http://localhost:15000`)
+app.listen(80, () => {
+    console.log(`Example app listening at http://localhost:80`)
 })
 
 

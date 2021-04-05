@@ -22,7 +22,7 @@ INITIAL_LR = 0.9
 
 class Player:
     PLAYER_TYPE = "RL"
-    exploration_rate = 0.2
+    exploration_rate = 0.3
     learning_rate = 0.9
     discount_factor = 0.8
 

@@ -49,6 +49,9 @@ def train(player_1, player_2, epochs=500, verbose = True):
     assert player_1.PLAYER_TYPE == "RL" or player_1.PLAYER_TYPE == "Minimax", "Only train with RL or Minimax"
     assert player_2.PLAYER_TYPE == "RL" or player_2.PLAYER_TYPE == "Minimax", "Only train with RL or Minimax"
     turn = 1
+    win = 0
+    loss = 0
+    tie = 0
     for j in range(epochs):
         if verbose: print("Round ", j)
         board = tic_tac_toe(player_1.symbol, player_2.symbol, turn)
@@ -65,11 +68,14 @@ def train(player_1, player_2, epochs=500, verbose = True):
                     if board.terminal_test() is not None:  # i.e. game over
                         player_1.rewards(board)
                         player_1.previous_states = []
-                        # print("Game over")
-                        # print(new_state)
+                        if player_2.PLAYER_TYPE != "Minimax": player_2.rewards(board)
+                        if player_2.PLAYER_TYPE != "Minimax": player_2.previous_states = []
                         break
                 elif board.terminal_test() is not None:
+                    if player_2.PLAYER_TYPE != "Minimax": player_2.rewards(board)
+                    if player_2.PLAYER_TYPE != "Minimax": player_2.previous_states = []
                     break
+
             else:
                 y_act = player_2.nextAction(board)
                 new_state = board.results(y_act, player_2.symbol)
@@ -78,18 +84,26 @@ def train(player_1, player_2, epochs=500, verbose = True):
                     if board.terminal_test() is not None:  # i.e. game over
                         player_2.rewards(board)
                         player_2.previous_states = []
-                        # print("Game over")
-                        # print(new_state)
+                        if player_1.PLAYER_TYPE != "Minimax": player_1.rewards(board)
+                        if player_1.PLAYER_TYPE != "Minimax": player_1.previous_states = []
                         break
                 elif board.terminal_test() is not None:
+                    if player_1.PLAYER_TYPE != "Minimax": player_1.rewards(board)
+                    if player_1.PLAYER_TYPE != "Minimax": player_1.previous_states = []
                     break
 
-        player_1.exponential_decay(j)
-        player_2.exponential_decay(j)
-        if verbose: print("Winner is:", board.utility())
+
+        if player_1.PLAYER_TYPE != "Minimax" and player_2.PLAYER_TYPE == "RL": player_2.exponential_decay(j)
+        if player_2.PLAYER_TYPE != "Minimax" and player_1.PLAYER_TYPE == "RL": player_1.exponential_decay(j)
+        w = board.utility()
+        if verbose: print("Winner is:", w)
+        if w == 1: win+=1
+        elif w == -1: loss+=1
+        else: tie +=1
         # input()
         turn *= -1
         if j == epochs-1: break
+    print("Win: ", win, " Loss: ", loss, " Tie:", tie)
     return player_1, player_2
 
 
