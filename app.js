@@ -92,22 +92,25 @@ app.get('/loggingin', (req, res) => {
     console.log("here");
     console.log(username);
     console.log(password);
-    try{
-        var stored_password = "";
-        dbs.retrieveUser(username, async function(result){
-            stored_password = await result;
+
+    var stored_password = "";
+    dbs.retrieveUser(username, async function(result, err ){
+        stored_password = await result;
+        if(err){
+            console.log(err);
+            res.send("Server Error ");
+        }else{
             console.log("Retrieved pass"+stored_password);
             if (stored_password === password){ // Correct log in
                 res.cookie( "usertic", username, {signed : true, maxAge: 18000000});
                 res.redirect("/demo.html");
-            }else{ // Incorect log in
+            }else if (!err){ // Incorect log in
                 res.send("Incorrect log in credentials");
             }
-        });
+        }
+    });
 
-    } catch (err){
-        res.send("Server Error ");
-    }
+
 
 })
 
@@ -115,22 +118,21 @@ app.get("/signup",(req, res) =>{
     var username = req.query.username;
     var password = req.query.password;
     var name = req.query.firstName + " " + req.query.lastName;
-    try{
+    var inserted = "";
+    dbs.signUp(username, name, password, async function(result, err){
+        inserted = await result;
+        if (err){
+            res.send("Server Error ");
+        }
+        else if(inserted){
+            // res.cookie("usertic", username, {signed : true, maxAge: 18000000});
+            res.redirect("/login.html");
+        }else{
+            res.send("Error cannot sign up, Try different Authentication");
+        }
+    });
 
-        var inserted = "";
-        dbs.signUp(username, name, password, async function(result){
-            inserted = await result;
-            if(inserted){
-                // res.cookie("usertic", username, {signed : true, maxAge: 18000000});
-                res.redirect("/login.html");
-            }else{
-                res.send("Error cannot sign up, Try different Authentication");
-            }
-        });
 
-    }catch (err){
-        res.send("Server Error ");
-    }
 
 })
 

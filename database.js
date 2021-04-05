@@ -27,7 +27,7 @@ exports.newDatabase = function(){
 }
 
 
-exports.signUp = function (username, name, password){
+exports.signUp = function (username, name, password, callback){
     var con = mysql.createConnection({
         host: "database-2.cyrxons3vtyp.ca-central-1.rds.amazonaws.com",
         user: "admin",
@@ -37,12 +37,12 @@ exports.signUp = function (username, name, password){
 
     con.connect(function(err){
         if(err) throw err;
-        console.log("Conected!")
+        console.log("Connected!")
 
         var sql = "INSERT INTO users (username, name, password) VALUES ('"+ username +"', '"+ name +"', '"+ password +"')";
         con.query(sql, function (err, result) {
-            if (err) return false;
-            return true;
+            if (err) return callback(false);
+            return callback(true);
             console.log("1 record inserted");
         });
 
@@ -67,9 +67,14 @@ exports.retrieveUser = function(name, callback){
         if(err) throw err;
         res = con.query("SELECT * from users where username ='"+name+"' ", function(err, result){
             if (err) throw err;
-            var rows = JSON.parse(JSON.stringify(result[0]));
-            console.log(rows);
-            return callback(rows.password);
+            if (result.length > 0) {
+                var rows = JSON.parse(JSON.stringify(result[0]));
+                console.log(rows);
+                return callback(rows.password);
+            }
+            else{
+                return callback("");
+            }
         });
 
     });
