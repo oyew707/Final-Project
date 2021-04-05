@@ -1,5 +1,5 @@
 Header for group project:
-Project title: ???
+Project title: Tic-tac-toe
 Name: Cole Hanniwell, Einstein Oyewole, Nick Dyer
 ID: 180320780, 180517070, 180348830
 Statement: We claim that the enclosed project submission is our team work.
